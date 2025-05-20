@@ -54,7 +54,7 @@ async function fetchAllPricesAndBroadcast() {
 }
 
 // Récupérer les prix toutes les 3 secondes (éviter saturation)
-setInterval(fetchAllPricesAndBroadcast, 3000);
+setInterval(fetchAllPricesAndBroadcast, 1000);
 
 wss.on('connection', ws => {
   console.log("🟢 Nouveau client connecté");
