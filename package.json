@@ -1,7 +1,7 @@
 {
-  "name": "btc-websocket-server",
+  "name": "multi-pair-ws-server",
   "version": "1.0.0",
-  "description": "Serveur WebSocket BTC/USDT pour streaming temps réel depuis Supra API",
+  "description": "WebSocket qui stream tous les actifs Supra en temps réel",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
