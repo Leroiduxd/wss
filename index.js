@@ -16,7 +16,7 @@ const PAIRS = [
 const wss = new WebSocketServer({ port: PORT });
 console.log(`✅ Serveur WebSocket lancé sur le port ${PORT}`);
 
-// Fonction pour récupérer tous les prix
+// Fonction pour récupérer tous les prix avec tous les champs de retour
 async function fetchAllPricesAndBroadcast() {
   try {
     const responses = await Promise.all(PAIRS.map(pair =>
@@ -27,9 +27,7 @@ async function fetchAllPricesAndBroadcast() {
 
     const results = {};
     for (const { pair, data } of responses) {
-      if (data.instruments && data.instruments.length > 0) {
-        results[pair] = data.instruments[0];
-      }
+      results[pair] = data;
     }
 
     const payload = JSON.stringify(results);
@@ -45,7 +43,7 @@ async function fetchAllPricesAndBroadcast() {
   }
 }
 
-// Récupérer les prix toutes les 3 secondes (éviter saturation)
+// Récupération toutes les 3 secondes
 setInterval(fetchAllPricesAndBroadcast, 1000);
 
 wss.on('connection', ws => {
