@@ -14,11 +14,12 @@ const PAIRS = [
   "xau_usd", "xag_usd", "xpd_usd", "xpt_usd", "xg_usd",
   "eur_usd", "usd_jpy", "gbp_usd", "eur_gbp", "usd_krw",
   "usd_hkd", "usd_inr", "usd_cny", "usd_sgd", "usd_thb",
-  "aud_usd", "usd_cad", "usd_chf", "nzd_usd"
+  "aud_usd", "usd_cad", "usd_chf", "nzd_usd", "eth_usdt"
 ];
 
 // Dictionnaire de correspondance des IDs (issu du fichier CSV)
 const PAIR_IDS = {
+  "eth_usdt": 1,
   "eur_usd": 5000,
   "usd_jpy": 5001,
   "gbp_usd": 5002,
