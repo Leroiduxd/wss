@@ -81,3 +81,4 @@ setInterval(fetchAllPricesAndBroadcast, 1000);
 wss.on('connection', ws => {
   console.log("🟢 Nouveau client connecté");
 });
+
