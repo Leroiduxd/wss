@@ -1,10 +1,12 @@
-import 'dotenv/config'; // Ajouté pour lire .env automatiquement
+import dotenv from 'dotenv';
+dotenv.config(); // Charge les variables depuis .env
+
 import fetch from 'node-fetch';
 import { WebSocketServer } from 'ws';
 
 // Configuration
 const PORT = process.env.PORT || 8080;
-const API_KEY = process.env.API_KEY; // Remplace la valeur directe
+const API_KEY = process.env.API_KEY;
 const BASE_URL = "https://prod-kline-rest.supra.com";
 
 // Liste de toutes les paires à surveiller
@@ -58,3 +60,4 @@ setInterval(fetchAllPricesAndBroadcast, 3000);
 wss.on('connection', ws => {
   console.log("🟢 Nouveau client connecté");
 });
+
