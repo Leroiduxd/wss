@@ -74,7 +74,7 @@ async function fetchAllPricesAndBroadcast() {
     const results = {};
     for (const { pair, data } of responses) {
       results[pair] = {
-        id: PAIR_METADATA[pair]?.id || null,
+        id: PAIR_METADATA[pair]?.id ?? null,
         name: PAIR_METADATA[pair]?.name || "UNKNOWN",
         ...data
       };
