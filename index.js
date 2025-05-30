@@ -11,34 +11,51 @@ const BASE_URL = "https://prod-kline-rest.supra.com";
 
 // Liste des paires à surveiller
 const PAIRS = [
-  "xau_usd", "xag_usd", "xpd_usd", "xpt_usd", "xg_usd",
-  "eur_usd", "usd_jpy", "gbp_usd", "eur_gbp", "usd_krw",
-  "usd_hkd", "usd_inr", "usd_cny", "usd_sgd", "usd_thb",
-  "aud_usd", "usd_cad", "usd_chf", "nzd_usd", "eth_usdt"
+  "aapl_usd", "amzn_usd", "coin_usd", "goog_usd", "gme_usd",
+  "intc_usd", "ko_usd", "mcd_usd", "msft_usd", "ibm_usd",
+  "meta_usd", "nvda_usd", "tsla_usd",
+  "aud_usd", "eur_usd", "gbp_usd", "nzd_usd",
+  "usd_cad", "usd_chf", "usd_jpy",
+  "xag_usd", "xau_usd",
+  "btc_usdt", "eth_usdt", "sol_usdt", "xrp_usdt",
+  "avax_usdt", "doge_usdt", "trx_usdt", "ada_usdt",
+  "sui_usdt", "link_usdt"
 ];
 
-// Dictionnaire de correspondance des IDs (issu du fichier CSV)
+// Dictionnaire de correspondance des IDs
 const PAIR_IDS = {
-  "eth_usdt": 1,
-  "eur_usd": 5000,
-  "usd_jpy": 5001,
-  "gbp_usd": 5002,
-  "eur_gbp": 5003,
-  "usd_krw": 5004,
-  "usd_hkd": 5005,
-  "usd_inr": 5006,
-  "usd_cny": 5007,
-  "usd_sgd": 5008,
-  "usd_thb": 5009,
+  "aapl_usd": 6004,
+  "amzn_usd": 6005,
+  "coin_usd": 6010,
+  "goog_usd": 6003,
+  "gme_usd": 6011,
+  "intc_usd": 6009,
+  "ko_usd": 6059,
+  "mcd_usd": 6068,
+  "msft_usd": 6001,
+  "ibm_usd": 6066,
+  "meta_usd": 6006,
+  "nvda_usd": 6002,
+  "tsla_usd": 6000,
   "aud_usd": 5010,
+  "eur_usd": 5000,
+  "gbp_usd": 5002,
+  "nzd_usd": 5013,
   "usd_cad": 5011,
   "usd_chf": 5012,
-  "nzd_usd": 5013,
-  "xau_usd": 5500,
+  "usd_jpy": 5001,
   "xag_usd": 5501,
-  "xpd_usd": 5502,
-  "xpt_usd": 5503,
-  "xg_usd": 5504
+  "xau_usd": 5500,
+  "btc_usdt": 0,
+  "eth_usdt": 1,
+  "sol_usdt": 10,
+  "xrp_usdt": 14,
+  "avax_usdt": 5,
+  "doge_usdt": 3,
+  "trx_usdt": 15,
+  "ada_usdt": 16,
+  "sui_usdt": 90,
+  "link_usdt": 2
 };
 
 // Serveur WebSocket
@@ -82,4 +99,3 @@ setInterval(fetchAllPricesAndBroadcast, 1000);
 wss.on('connection', ws => {
   console.log("🟢 Nouveau client connecté");
 });
-
