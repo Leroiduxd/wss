@@ -22,40 +22,40 @@ const PAIRS = [
   "sui_usdt", "link_usdt"
 ];
 
-// Dictionnaire de correspondance des IDs
-const PAIR_IDS = {
-  "aapl_usd": 6004,
-  "amzn_usd": 6005,
-  "coin_usd": 6010,
-  "goog_usd": 6003,
-  "gme_usd": 6011,
-  "intc_usd": 6009,
-  "ko_usd": 6059,
-  "mcd_usd": 6068,
-  "msft_usd": 6001,
-  "ibm_usd": 6066,
-  "meta_usd": 6006,
-  "nvda_usd": 6002,
-  "tsla_usd": 6000,
-  "aud_usd": 5010,
-  "eur_usd": 5000,
-  "gbp_usd": 5002,
-  "nzd_usd": 5013,
-  "usd_cad": 5011,
-  "usd_chf": 5012,
-  "usd_jpy": 5001,
-  "xag_usd": 5501,
-  "xau_usd": 5500,
-  "btc_usdt": 0,
-  "eth_usdt": 1,
-  "sol_usdt": 10,
-  "xrp_usdt": 14,
-  "avax_usdt": 5,
-  "doge_usdt": 3,
-  "trx_usdt": 15,
-  "ada_usdt": 16,
-  "sui_usdt": 90,
-  "link_usdt": 2
+// Dictionnaire des IDs et noms des actifs
+const PAIR_METADATA = {
+  "aapl_usd": { id: 6004, name: "APPLE INC." },
+  "amzn_usd": { id: 6005, name: "AMAZON" },
+  "coin_usd": { id: 6010, name: "COINBASE" },
+  "goog_usd": { id: 6003, name: "ALPHABET INC." },
+  "gme_usd": { id: 6011, name: "GAMESTOP CORP." },
+  "intc_usd": { id: 6009, name: "INTEL CORPORATION" },
+  "ko_usd": { id: 6059, name: "COCA-COLA CO" },
+  "mcd_usd": { id: 6068, name: "MCDONALD'S CORP" },
+  "msft_usd": { id: 6001, name: "MICROSOFT CORP" },
+  "ibm_usd": { id: 6066, name: "IBM" },
+  "meta_usd": { id: 6006, name: "META PLATFORMS INC." },
+  "nvda_usd": { id: 6002, name: "NVIDIA CORP" },
+  "tsla_usd": { id: 6000, name: "TESLA INC" },
+  "aud_usd": { id: 5010, name: "AUSTRALIAN DOLLAR" },
+  "eur_usd": { id: 5000, name: "EURO" },
+  "gbp_usd": { id: 5002, name: "GREAT BRITAIN POUND" },
+  "nzd_usd": { id: 5013, name: "NEW ZEALAND DOLLAR" },
+  "usd_cad": { id: 5011, name: "CANADIAN DOLLAR" },
+  "usd_chf": { id: 5012, name: "SWISS FRANC" },
+  "usd_jpy": { id: 5001, name: "JAPANESE YEN" },
+  "xag_usd": { id: 5501, name: "SILVER" },
+  "xau_usd": { id: 5500, name: "GOLD" },
+  "btc_usdt": { id: 0, name: "BITCOIN" },
+  "eth_usdt": { id: 1, name: "ETHEREUM" },
+  "sol_usdt": { id: 10, name: "SOLANA" },
+  "xrp_usdt": { id: 14, name: "RIPPLE" },
+  "avax_usdt": { id: 5, name: "AVALANCHE" },
+  "doge_usdt": { id: 3, name: "DOGECOIN" },
+  "trx_usdt": { id: 15, name: "TRON" },
+  "ada_usdt": { id: 16, name: "CARDANO" },
+  "sui_usdt": { id: 90, name: "SUI" },
+  "link_usdt": { id: 2, name: "CHAINLINK" }
 };
 
 // Serveur WebSocket
@@ -74,7 +74,8 @@ async function fetchAllPricesAndBroadcast() {
     const results = {};
     for (const { pair, data } of responses) {
       results[pair] = {
-        id: PAIR_IDS[pair] || null,
+        id: PAIR_METADATA[pair]?.id || null,
+        name: PAIR_METADATA[pair]?.name || "UNKNOWN",
         ...data
       };
     }
@@ -99,3 +100,4 @@ setInterval(fetchAllPricesAndBroadcast, 1000);
 wss.on('connection', ws => {
   console.log("🟢 Nouveau client connecté");
 });
+
