@@ -58,9 +58,19 @@ const PAIR_METADATA = {
   "link_usdt": { id: 2, name: "CHAINLINK" }
 };
 
-// Serveur WebSocket
-const wss = new WebSocketServer({ port: PORT });
-console.log(`✅ Serveur WebSocket lancé sur le port ${PORT}`);
+// Serveur WebSocket avec compression activée
+const wss = new WebSocketServer({
+  port: PORT,
+  perMessageDeflate: {
+    zlibDeflateOptions: { level: 9 },
+    zlibInflateOptions: { chunkSize: 1024 },
+    clientNoContextTakeover: true,
+    serverNoContextTakeover: true,
+    threshold: 0
+  }
+});
+
+console.log(`✅ Serveur WebSocket lancé sur le port ${PORT} avec compression`);
 
 // Fonction pour récupérer tous les prix et diffuser
 async function fetchAllPricesAndBroadcast() {
@@ -100,4 +110,3 @@ setInterval(fetchAllPricesAndBroadcast, 1000);
 wss.on('connection', ws => {
   console.log("🟢 Nouveau client connecté");
 });
-
